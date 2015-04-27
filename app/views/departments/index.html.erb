@@ -1,0 +1,31 @@
+<%= render 'shared/content_title', title: 'All Departments' %>
+
+ <%# Department.all.each do |department| %>
+   <!--  <li>
+   		<%# link_to department.name, department_path(department) %>
+   	</li> -->
+ <%# end %>
+
+<%# Department.all.each do |d| %>
+    	<!-- <li>
+    		 <%# d.name %>, <%# d.list_order %>,  
+
+    	</li> -->
+<%# end %>
+
+
+
+<div style="margin-top: 1em;">
+<% @department.all.each do |department| %> 
+	<div class="row" style="margin-bottom: .5em;">
+		<div class="col-md-3"> 
+			 <%= department.name %> | <%= department.list_order %>  
+		</div>		
+			<div class="col-lg-3">
+				<%= link_to edit_department_path(department) do %>
+				<div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </div>
+				<% end %>
+			</div>		
+	</div>
+<% end %>
+</div>

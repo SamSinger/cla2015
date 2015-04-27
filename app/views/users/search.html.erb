@@ -1,0 +1,41 @@
+  <%= render 'shared/content_title', title: 'Search by last name' %>
+  or <%= link_to 'Add new user', new_user_path, class: 'btn btn-success' %>
+ <%= form_tag search_users_path, class: "col_md_5 navbar-form for-search" do  %>
+      <div class="form-group">
+        <%= text_field_tag :search_term,  'Search by lastname', class: 'form-control'  %>
+      <%= button_tag  'Search', class: 'button btn btn-default' %>
+
+    </div>
+   <% end %>
+
+  
+
+
+ 
+
+
+
+<div style="margin-top: 1em;">
+<% @results.each do |result| %> 
+  <div class="row" style="margin-bottom: .5em;">
+    <div class="col-md-3"> 
+       <%= result.last_name %>, <%= result.first_name %> <%= result.middle_name %>
+    </div>    
+      <% if logged_in? %>
+      <div class="col-md-1">
+        <%= link_to edit_user_path(result) do %>
+        <div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </div>
+        <% end %>
+      </div>  
+      <% end %> 
+    <div class="col-md-1">
+        <%= link_to edit_user_path(result) do %>
+        <div class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> </div>
+        <% end %>
+      </div>      
+  </div>
+<% end %>
+</div>
+
+
+    

@@ -1,0 +1,26 @@
+<%= render 'shared/content_title', title: 'People Keeper (index)' %>
+ 
+
+<%= link_to 'Add new user', new_user_path, class: 'btn btn-success' %>
+
+<div style="margin-top: 1em;">
+<% @users.each do |user| %> 
+  <div class="row" style="margin-bottom: .5em;">
+    <div class="col-md-3"> 
+       <%= user.last_name %>, <%= user.first_name %> <%= user.middle_name %>
+    </div>    
+      <% if logged_in? %>
+      <div class="col-md-1">
+        <%= link_to edit_user_path(user) do %>
+        <div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </div>
+        <% end %>
+      </div>  
+      <% end %> 
+    <div class="col-md-1">
+        <%= link_to edit_user_path(user) do %>
+        <div class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> </div>
+        <% end %>
+      </div>      
+  </div>
+<% end %>
+</div>

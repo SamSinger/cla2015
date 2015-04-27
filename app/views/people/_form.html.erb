@@ -1,0 +1,79 @@
+<%  if @user.errors.any? %>
+<div class="alert alert.error">
+  <h5>There were some errors!</h5>
+    <ul>
+      <%  @user.errors.full_messages.each do |msg| %>
+      <li><%  msg %></li>
+      <%  end %>
+    </ul>
+</div>
+<%  end %>
+
+
+<%= form_for @user do |f| %>
+<div class="well control-group">
+<div class="row">
+  <div class="col-md-6">
+
+    <%=  f.label "Select a department" %>    
+    <%= f.select("department_id", Department.all.collect {|d| [ d.name, d.id ] }, {include_blank: 'None'}) %>
+    <br /><br />
+  
+ 
+  <%= f.label :first_name, 'First name' %>
+  <%= f.text_field :first_name, :size => 15, autofocus: true %><br>
+
+  <%= f.label :middle_name, 'Middle name' %>
+  <%= f.text_field :middlename %><br>
+
+  <%= f.label :last_name, 'Last name' %>
+  <%= f.text_field :lastname %><br>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, :size => 30, :placeholder => '@auburn.edu' %>
+
+   
+
+  <%= f.label :au_user_name, 'AU user name' %>
+  <%= f.text_field :au_user_name %>
+
+  <%= f.label :office_address, 'Office address' %>
+  <%= f.text_field :office_address %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+
+  <%= f.label :interest_areas, 'Interest areas' %>
+  <%= f.text_area :interest_areas %>
+
+  <%= f.label :instructional_areas, 'Instructional areas' %>
+  <%= f.text_field :languagestaught %>
+  <fieldset>
+    <legend>Office Hours</legend>
+      <%= f.label :monday_hours %>
+      <%= f.text_field :monday_hours, :size => 30 %>
+
+      <%= f.label :tuesday_hours %>
+      <%= f.text_field :tuesday_hours, :size => 30 %>
+
+      <%= f.label :wednesday_hours %>
+      <%= f.text_field :wednesday_hours, :size => 30 %>
+
+      <%= f.label :thursday_hours %>
+      <%= f.text_field :thursday_hours, :size => 30 %>
+
+      <%= f.label :friday_hours %>
+      <%= f.text_field :friday_hours, :size => 30 %>
+  </fieldset> 
+  </div>  
+<div class="col-md-6">
+   
+      <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :name) %>
+   
+ </div>
+</div>
+</div>
+
+  <%= f.submit(@user.new_record? ? 'Create User' : 'Update User', class: 'btn btn-primary') %>
+
+<% end %>

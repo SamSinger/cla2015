@@ -1,0 +1,29 @@
+<%= render 'shared/content_title', title: 'All Categories' %>
+
+ <%# Category.all.each do |category| %>
+   <!--  <li>
+   		<%# link_to category.name, category_path(category) %>
+   	</li> -->
+ <%# end %>
+
+<%# Category.all.each do |d| %>
+    	<!-- <li>
+    		 <%# d.name %>, <%# d.list_order %>,  
+
+    	</li> -->
+<%# end %>
+
+<div style="margin-top: 1em;">
+<% @category.each do |category| %> 
+	<div class="row" style="margin-bottom: .5em;">
+		<div class="col-md-3"> 
+			 <%= category.name %> | <%= category.list_order %>  
+		</div>		
+			<div class="col-lg-3">
+				<%= link_to edit_category_path(category) do %>
+				<div class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </div>
+				<% end %>
+			</div>		
+	</div>
+<% end %>
+</div>

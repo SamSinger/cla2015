@@ -1,0 +1,27 @@
+<%  if @category.errors.any? %>
+<div class="alert alert.error">
+  <h5>There were some errors!</h5>
+    <ul>
+      <%  @category.errors.full_messages.each do |msg| %>
+      <li><%  msg %></li>
+      <%  end %>
+    </ul>
+</div>
+<%  end %>
+
+
+<%= form_for @category do |f| %>
+<div class="well control-group">
+     
+ 
+  <%= f.label :name, 'Rank name' %>
+  <%= f.text_field :name, :size => 15, autofocus: true %><br>
+
+  <%= f.label :list_order, 'List order' %>
+  <%= f.text_field :list_order %><br>
+
+   </div>
+
+  <%= f.submit(@category.new_record? ? 'Create Category' : 'Update Category', class: 'btn btn-primary') %>
+
+<% end %>

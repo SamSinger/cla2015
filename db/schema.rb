@@ -11,15 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407140205) do
+ActiveRecord::Schema.define(version: 20150414195548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "list_order"
+    t.datetime "timestamps"
+  end
+
+  create_table "categories_users", force: true do |t|
+    t.integer "category_id"
+    t.integer "user_id"
+  end
+
+  add_index "categories_users", ["category_id"], name: "index_categories_users_on_category_id", using: :btree
+  add_index "categories_users", ["user_id"], name: "index_categories_users_on_user_id", using: :btree
 
   create_table "departments", force: true do |t|
     t.string   "name"
     t.string   "list_order"
     t.datetime "timestamps"
+  end
+
+  create_table "tests", force: true do |t|
   end
 
   create_table "users", force: true do |t|
@@ -39,6 +56,10 @@ ActiveRecord::Schema.define(version: 20150407140205) do
     t.string   "friday_hours"
     t.integer  "department_id"
     t.datetime "timestamps"
+    t.string   "au_user_name"
+    t.string   "password_digest"
   end
+
+  add_index "users", ["department_id"], name: "index_users_on_department_id", using: :btree
 
 end
