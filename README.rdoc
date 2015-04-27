@@ -67,43 +67,49 @@ create_table "categories", force: true do |t|
   end
 </tt>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ 
 
 User model
+
 The user is contains the following fields:
  
     department_id, first_name middle_name,last_name, email, au_user_name, role, password_digest,  office_address, phone, rank_description, interest_areas, languages_taught, instructional_areas, monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours
 
 Relationships:
-  belongs_to :department
-  has_many :categories_users
-  has_many :categories, through: :categories_users
+
+  - belongs_to :department
+  - has_many :categories_users
+  - has_many :categories, through: :categories_users
 
 User roles
+
 There is a role of admin. Users with this role may do the following:
-* add and modify other Users.
+
+  * add and modify other Users.
 
 There is a role of department admin.  Users with this role may do the following:
-* add and modify other Users who have the same departmental designation.  
+
+ * add and modify other Users who have the same departmental designation.  
 
 There is a role of default. Users with this role may do the following:
-* add and modify their own fields related to office hours.
+
+ * add and modify their own fields related to office hours.
  
 
 User stories
+
 Core information about each user will be entered into the system by an admin. 
 Admin roles are needed to add or modify department_id, first_name middle_name,last_name, email, au_user_name, role, password_digest,  office_address, phone, rank_description, interest_areas, languages_taught, instructional_areas. 
+
 Admin roles may also add or modify monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours known as _hours.
 
 A new user may request to use the system. This is done by supplying an au_user_name to the system.  If there is a match for an existing au_user_name the system will email the user of the matched au_user_name a temporary password that can be used to access the sytem for the purpose of updating the user password.  At this point the user may login and use the system.
+
 If there is not a matching au_user_name in the system, the user is not allowed to proceed. The user is requested to contact the administrator if he believes that this is in error. The system will email the system administrator notification of the request.
 
 A department admin may add and modify new users.  A department admin may only assign a department id which matches their own.
+
 A department admin may search by last_name for a user to modify.
 
 
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ 
